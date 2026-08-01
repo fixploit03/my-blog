@@ -5,6 +5,8 @@ date: 2026-08-02 03:20:00 +0700
 tags: [wifi-hacking, aircrack-ng, pmkid]
 ---
 
+<img width="950" height="534" alt="imageedit_1_3160633659" src="https://github.com/user-attachments/assets/60a68480-18dc-49d8-818c-ec7450db8586" />
+
 ## Persyaratan
 - Aircrack-NG versi 1.4 ke atas
 - Paket EAPOL M1
