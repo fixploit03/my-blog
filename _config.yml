@@ -2,7 +2,7 @@ title: "my-blog"
 description: "Blog kecil buat dokumentasi catatan pribadi"
 author: "Rofi (Fixploit03)"
 
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/hacker
 
 url: "https://fixploit03.github.io"
 baseurl: "/my-blog"
