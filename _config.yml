@@ -1,7 +1,7 @@
 title: "my-blog"
 description: "Blog kecil buat dokumentasi catatan pribadi"
 author: "Rofi (Fixploit03)"
-theme: minima
+theme: hacker
 url: "https://fixploit03.github.io"
 baseurl: "/my-blog"
 permalink: /:year/:month/:day/:title/
