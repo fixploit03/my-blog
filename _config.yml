@@ -1,19 +1,22 @@
 title: "my-blog"
 description: "Blog kecil buat dokumentasi catatan pribadi"
 author: "Rofi (Fixploit03)"
-theme: hacker
+
+remote_theme: pages-themes/hacker@v0.2.0
+
 url: "https://fixploit03.github.io"
 baseurl: "/my-blog"
 permalink: /:year/:month/:day/:title/
-minima:
-  social_links:
-    github: fixploit03
+
+future: true
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-remote-theme
+
 exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
-future: true
