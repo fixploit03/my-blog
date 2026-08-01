@@ -2,7 +2,6 @@
 layout: post
 title: "Crack PMKID Menggunakan Aircrack-NG"
 date: 2026-08-02 03:20:00 +0700
-categories: [cyber-security, tutorial]
 tags: [wifi-hacking, aircrack-ng, pmkid]
 ---
 
