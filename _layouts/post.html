@@ -12,7 +12,7 @@ layout: default
   {% if page.tags.size > 0 %}
   <p>tags:
     {% for tag in page.tags %}
-      <a href="{{ '/tags/' | append: tag | slugify | relative_url }}/">{{ tag }}</a>{% unless forloop.last %} - {% endunless %}
+      <a href="{{ tag | slugify | prepend: '/tags/' | relative_url }}/">{{ tag }}</a>
     {% endfor %}
   </p>
   {% endif %}
