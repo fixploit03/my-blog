@@ -8,8 +8,8 @@ tags: [wifi-hacking, aircrack-ng, pmkid]
 ![]({{ "/assets/img/crack-pmkid-menggunakan-aircrack-ng.png" | relative_url }})
 
 ## Persyaratan
-- Aircrack-NG versi 1.4 ke atas
-- Paket EAPOL M1
+- Aircrack-ng versi 1.4 ke atas
+- File capture yang berisi paket EAPOL M1
 - Keamanan Wi-Fi: WPA2-PSK
 
 ## Perintah
