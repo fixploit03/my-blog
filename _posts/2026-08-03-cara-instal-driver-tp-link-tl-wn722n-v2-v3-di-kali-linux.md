@@ -8,10 +8,19 @@ tags: [wifi-hacking, tp-link, aircrack-ng]
 ## Instalasi
 
 ```bash
+# update repositori kali linux
 sudo apt update
+
+# instal dependensi yang dibutuhkan
 sudo apt install -y build-essential bc libelf-dev git dkms linux-headers-$(uname -r) realtek-rtl8188eus-dkms
+
+# blacklist modul yang bermasalah
 echo 'blacklist rtl8xxxu' | sudo tee -a /etc/modprobe.d/realtek.conf
+
+# unload modul yang bermasalah
 sudo rmmod rtl8xxxu
+
+# load modul baru yang sudah diinstal
 sudo modprobe 8188eu
 ```
 
