@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cara Instal Driver TP-LINK TL-WN722N V2/V3 di Kali Linux"
-date: 2026-08-02 01:37:00 +0700
+date: 2026-08-03 01:37:00 +0700
 tags: [wifi-hacking, tp-link, aircrack-ng]
 ---
 
