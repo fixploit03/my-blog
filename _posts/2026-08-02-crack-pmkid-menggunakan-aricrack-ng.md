@@ -7,7 +7,7 @@ tags: [wifi-hacking, aircrack-ng, pmkid]
 
 ## Persyaratan
 - Aircrack-NG versi 1.4 ke atas
-- File capture yang berisi EAPOL frame M1
+- File capture yang berisi EAPOL frame (M1)
 - Keamanan Wi-Fi: WPA2-PSK
 
 ## Instalasi
