@@ -10,6 +10,7 @@ tags: [wifi-hacking, aircrack-ng, pmkid]
 ## Persyaratan
 - Aircrack-NG versi 1.4 ke atas
 - Paket EAPOL M1
+- Keamanan Wi-Fi: WPA2-PSK
 
 ## Perintah
 
