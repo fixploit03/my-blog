@@ -5,12 +5,32 @@ date: 2026-08-02 19:25:00 +0700
 tags: [wifi-hacking, pmkid]
 ---
 
+## Daftar Isi
+- [Apa itu PMKID?](#apa-itu-pmkid)
+- [Sejarah](#sejarah)
+- [Proses Cracking](#proses-cracking)
+- [Kesimpulan](#kesimpulan)
+  
+## Apa itu PMKID?
+
+**PMKID** (Pairwise Master Key Identifier) adalah nilai hash yang berfungsi sebagai identifier atau penanda unik dari sebuah **PMK (Pairwise Master Key)** dalam proses autentikasi Wi-Fi menggunakan protokol **WPA2**. Nilai PMKID dihasilkan dari kombinasi tiga komponen utama, yaitu **PMK**, **MAC address access point (AP)**, dan **MAC address client (STA)**, yang kemudian dihitung menggunakan fungsi hash **HMAC-SHA1**. Fungsi HMAC-SHA1 sendiri menghasilkan output sepanjang 20 byte (160 bit), namun PMKID hanya mengambil **16 byte (128 bit) pertama** dari hasil tersebut, sehingga jika direpresentasikan dalam bentuk hex string, panjang PMKID menjadi **32 karakter**.
+
+PMKID sendiri dirancang untuk mempercepat proses **roaming** pada jaringan Wi-Fi, khususnya pada fitur **802.11r (Fast BSS Transition)**. Fitur ini memungkinkan client berpindah antar access point dalam satu jaringan tanpa perlu mengulang seluruh proses 4-way handshake dari awal, karena AP dapat langsung memverifikasi client menggunakan PMKID yang sudah pernah dihasilkan sebelumnya. Nilai PMKID ini disisipkan oleh AP di dalam **RSN IE (Robust Security Network Information Element)** pada frame EAPOL pertama (M1) yang dikirim saat proses autentikasi dimulai.
+
+## Sejarah
+
+Teknik PMKID attack pertama kali ditemukan dan dipublikasikan oleh tim [hashcat](https://hashcat.net/hashcat/) pada tahun 2018, tepatnya oleh [Jens "atom" Steube](https://github.com/jsteube), salah satu pengembang utama hashcat. Penemuan ini terjadi secara tidak sengaja saat tim hashcat sedang meneliti standar keamanan WPA3, dan mereka menemukan bahwa banyak access point tetap menyertakan PMKID di dalam frame EAPOL M1, meskipun fitur roaming (802.11r) tidak sedang digunakan atau bahkan tidak diaktifkan sama sekali.
+
+Sebelum ditemukannya teknik ini, cara umum untuk melakukan cracking passphrase WPA/WPA2 adalah dengan menangkap **4-way handshake** secara lengkap, yang mengharuskan attacker menunggu ada client yang terhubung ke access point, atau bahkan melakukan deauthentication attack untuk memaksa client melakukan reconnect. Dengan ditemukannya PMKID attack, proses ini menjadi jauh lebih efisien karena attacker hanya perlu menangkap satu frame EAPOL dari access point, tanpa memerlukan interaksi dari client sama sekali (**clientless**).
+
+## Proses Cracking
+
 ### Tahap 1 - Mendapatkan Data-Data yang Dibutuhkan
 
 Untuk melakukan cracking passphrase WPA2-PSK menggunakan PMKID, attacker harus mengumpulkan data-data berikut:
 - **PMKID**: Nilai hash yang berhasil di-capture dari EAPOL frame (M1)
 - **SSID**: Nama Wi-Fi
-- **MAC AP**: MAC address Access Point
+- **MAC AP**: MAC address access point
 - **MAC STA**: MAC address client
 - **Wordlist**: File yang berisi kandidat password
 
