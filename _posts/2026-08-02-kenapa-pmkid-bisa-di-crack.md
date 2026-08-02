@@ -8,13 +8,13 @@ tags: [wifi-hacking, pmkid]
 ## Tahap 1 - Mendapatkan Data-Data yang Dibutuhkan
 
 Untuk mengcrack PMKID attacker harus mengumpulkan data-data berikut ini:
-- **PMKID**: Nilai hash yang berhasil di-capture dari paket EAPOL M1
+- **PMKID**: Nilai hash yang berhasil di-capture dari frame EAPOL M1
 - **SSID**: Nama Wi-Fi
-- **MAC AP**: MAC address AP
+- **MAC AP**: MAC address Access Point
 - **MAC STA**: MAC address client
 - **Wordlist**: File yang berisi kandidat password
 
-> Data-data tersebut bisa didapatkan oleh attacker dengan cara melakukan capture trafik Wi-Fi menggunakan tools seperti `hcxdumptool` atau `airodump-ng`.
+> Data-data tersebut bisa didapatkan oleh attacker dengan cara melakukan capture trafik Wi-Fi menggunakan tools seperti `wireshark` atau `airodump-ng`.
 
 ## Tahap 2 - Menghitung PMK
 
