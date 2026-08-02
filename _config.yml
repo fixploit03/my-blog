@@ -2,6 +2,8 @@ title: "my-blog"
 description: "Blog kecil buat dokumentasi dan catatan pribadi"
 author: "Rofi (Fixploit03)"
 
+timezone: Asia/Jakarta
+
 remote_theme: pages-themes/hacker
 
 url: "https://fixploit03.github.io"
