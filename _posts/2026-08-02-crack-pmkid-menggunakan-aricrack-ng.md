@@ -5,8 +5,6 @@ date: 2026-08-02 03:20:00 +0700
 tags: [wifi-hacking, aircrack-ng, pmkid]
 ---
 
-![]({{ "/assets/img/crack-pmkid-menggunakan-aircrack-ng.png" | relative_url }})
-
 ## Persyaratan
 - Aircrack-NG versi 1.4 ke atas
 - File capture yang berisi paket EAPOL M1
