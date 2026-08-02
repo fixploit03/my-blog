@@ -14,6 +14,8 @@ Untuk mengcrack PMKID attacker harus mengumpulkan data-data berikut ini:
 - **MAC STA**: MAC address client
 - **Wordlist**: File yang berisi kandidat password
 
+> Data-data tersebut bisa didapatkan oleh attacker dengan cara melakukan capture trafik Wi-Fi menggunakan tools seperti `hcxdumptool` atau `airodump-ng`.
+
 ## Tahap 2 - Menghitung PMK
 
 PMK dihitung menggunakan rumus berikut:
@@ -58,4 +60,7 @@ print("PMKID:", pmkid.hex())
 ```
 
 ## Tahap 4 - Membandingkan PMKID
-Setelah menghitung PMKID dari berbagai kandidat password yang ada di wordlist, PMKID tersebut dibandingkan dengan PMKID asli yang berhasil di-capture oleh attacker, apabila hasilnya sama maka password tersebut benar. Jika hasilnya tidak sama maka attacker mengulang kembali dari Tahap 2 dengan kandidat password berikutnya yang ada di wordlist.
+
+Setelah menghitung PMKID dari berbagai kandidat password yang ada di wordlist, PMKID tersebut dibandingkan dengan PMKID asli yang berhasil di-capture oleh attacker. Apabila hasilnya sama, maka password tersebut benar.
+
+Jika hasilnya tidak sama, maka attacker mengulang kembali dari Tahap 2 sampai Tahap 4 dengan kandidat password berikutnya yang ada di wordlist sampai ditemukan kecocokan atau seluruh kandidat password di wordlist habis dicoba.
