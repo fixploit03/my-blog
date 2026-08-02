@@ -12,6 +12,13 @@ tags: [wifi-hacking, aircrack-ng, pmkid]
 - File capture yang berisi paket EAPOL M1
 - Keamanan Wi-Fi: WPA2-PSK
 
+## Instalasi
+
+```bash
+sudo apt update
+sudo apt install -y aircrack-ng
+```
+
 ## Perintah
 
 ```bash
