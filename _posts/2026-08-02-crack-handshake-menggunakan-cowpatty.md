@@ -8,7 +8,7 @@ tags: [wifi-hacking, cowpatty, handshake]
 ## Persyaratan
 - Cowpatty
 - File capture yang berisi 4-way handshake
-- Keamanan Wi-Fi: WPA2-PSK
+- Keamanan Wi-Fi: WPA/WPA2-PSK
 
 ## Instalasi
 
