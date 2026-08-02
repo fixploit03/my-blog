@@ -6,6 +6,7 @@ tags: [wifi-hacking, pmkid]
 ---
 
 ### Tahap 1 - Mendapatkan Data-Data yang Dibutuhkan
+
 Untuk melakukan cracking passphrase WPA2-PSK menggunakan PMKID, attacker harus mengumpulkan data-data berikut:
 
 - **PMKID**: Nilai hash yang berhasil di-capture dari EAPOL frame (M1).
@@ -14,9 +15,10 @@ Untuk melakukan cracking passphrase WPA2-PSK menggunakan PMKID, attacker harus m
 - **MAC STA**: MAC address client.
 - **Wordlist**: File yang berisi kandidat password.
 
-> Data-data tersebut dapat diperoleh attacker dengan cara melakukan capture terhadap trafik Wi-Fi menggunakan tools seperti `Wireshark` atau `airodump-ng`.
+> Data-data tersebut dapat diperoleh attacker dengan cara melakukan capture terhadap trafik Wi-Fi menggunakan tools seperti `wireshark` atau `airodump-ng`.
 
 ### Tahap 2 - Menghitung PMK
+
 Setelah data-data tersebut berhasil dikumpulkan, attacker kemudian menghitung PMK menggunakan rumus berikut:
 
 ```
@@ -24,15 +26,15 @@ PMK = PBKDF2(HMAC-SHA1, passphrase, SSID, 4096, 256)
 ```
 
 Keterangan:
-
-- `PBKDF2`: Fungsi turunan kunci (key derivation function) yang mengubah passphrase menjadi PMK melalui proses hashing berulang.
-- `HMAC-SHA1`: Fungsi pseudorandom yang digunakan di dalam proses PBKDF2.
-- `passphrase`: Password Wi-Fi yang ingin dicoba (kandidat password dari wordlist).
-- `SSID`: Nama jaringan Wi-Fi, digunakan sebagai *salt* agar PMK tetap unik meskipun passphrase sama namun SSID berbeda.
-- `4096`: Jumlah iterasi hashing yang dilakukan, semakin banyak iterasi maka semakin berat secara komputasi.
-- `256`: Panjang output PMK dalam satuan bit (setara dengan 32 byte).
+- `PBKDF2`: Fungsi turunan kunci untuk mengubah passphrase menjadi PMK.
+- `HMAC-SHA1`: Fungsi hash yang digunakan dalam PBKDF2.
+- `passphrase`: Kandidat password dari wordlist.
+- `SSID`: Nama Wi-Fi, digunakan sebagai salt.
+- `4096`: Jumlah iterasi hashing.
+- `256`: Panjang output PMK dalam bit (32 byte).
 
 Script python:
+
 ```py
 #!/usr/bin/env python3
 
@@ -47,6 +49,7 @@ print("PMK:", pmk.hex())
 ```
 
 ### Tahap 3 - Menghitung PMKID
+
 Setelah PMK berhasil didapat, attacker kemudian menghitung PMKID menggunakan rumus berikut:
 
 ```
@@ -54,14 +57,14 @@ PMKID = HMAC-SHA1(PMK, "PMK Name" || MAC_AP || MAC_STA)
 ```
 
 Keterangan:
-
-- `HMAC-SHA1`: Fungsi hash yang digunakan untuk menghasilkan nilai PMKID.
-- `PMK`: Hasil perhitungan dari Tahap 2, digunakan sebagai kunci (key) dalam fungsi HMAC-SHA1.
-- `"PMK Name"`: String tetap (konstanta) yang telah ditentukan dalam standar 802.11i sebagai label identifikasi.
+- `HMAC-SHA1`: Fungsi hash untuk menghasilkan PMKID.
+- `PMK`: Hasil dari Tahap 2, digunakan sebagai kunci HMAC.
+- `"PMK Name"`: Konstanta tetap dari standar 802.11i.
 - `MAC_AP`: MAC address access point.
 - `MAC_STA`: MAC address client.
 
 Script python:
+
 ```py
 #!/usr/bin/env python3
 
@@ -78,9 +81,11 @@ print("PMKID:", pmkid.hex())
 ```
 
 ### Tahap 4 - Membandingkan PMKID
+
 Setelah attacker menghitung PMKID dari setiap kandidat password yang ada di wordlist, PMKID tersebut dibandingkan dengan PMKID asli yang berhasil di-capture oleh attacker. Apabila hasilnya sama, maka password tersebut dapat dipastikan benar.
 
 Jika hasilnya tidak sama, attacker akan mengulang proses dari Tahap 2 hingga Tahap 4 menggunakan kandidat password berikutnya, hingga ditemukan PMKID yang sama atau seluruh kandidat password pada wordlist telah habis dicoba.
 
 ## Kesimpulan
+
 PMKID dapat dimanfaatkan untuk melakukan cracking passphrase WPA2-PSK karena nilai PMKID dihasilkan dari kombinasi PMK, SSID, serta MAC address AP dan client, sehingga attacker dapat menghitung ulang PMKID dari setiap kandidat password di wordlist dan membandingkannya dengan PMKID asli yang berhasil di-capture.
